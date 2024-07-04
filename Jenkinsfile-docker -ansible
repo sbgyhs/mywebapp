@@ -4,7 +4,7 @@ pipeline {
         stage('Git Checkout') {
             agent any
             steps {
-                git branch: 'main', url: 'https://github.com/sbgyhs/mywebapp'
+                git branch: 'main', url: 'https://github.com/yhs0728/mywebapp'
             }
         }
         stage('Maven Build') {
@@ -45,23 +45,15 @@ pipeline {
                 }
             }
         }
-        stage('Docker Container Deploy to Docker Out of Docker') {
-            agent {
-                docker { image 'docker:dind' }
-            }
-            steps {
-                sh 'docker -H tcp://192.168.56.104:2375 container run --detach --name mywebapp -p 80:8080 yhs0728/mywebapp:$BUILD_NUMBER'
-            }
-        }
         stage('Docker Container Deploy to Docker Out of Docker with Ansible') {
             agent {
                 docker {
                     image 'ghcr.io/c1t1d0s7/jenkins-ansible-agent'
-                    args '-u 0:0 -e DOCKER_HOST=tcp://192.168.56.104:2375' 
+                    args '-u 0:0 -e DOCKER_HOST=tcp://192.168.56.104:2375'
                 }
             }
             steps {
-                ansiblePlaybook(playbook:'docker-container-deploy.yaml')
+                ansiblePlaybook(playbook: 'docker-container-deploy.yaml')
             }
         }
     }
