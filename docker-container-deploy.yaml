@@ -8,4 +8,4 @@
       image: "yhs0728/mywebapp:{{ lookup('env','BUILD_NUMBER') }}"
       state: started
       ports:
-      - "80:8080"
+      - "8888:8080"
