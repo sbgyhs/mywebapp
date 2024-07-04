@@ -4,21 +4,21 @@ pipeline {
         stage('Git Checkout') {
             agent any
             steps {
-                git branch: 'main', url: 'https://github.com/sbgyhs/mywebapp.git'
+                git branch: 'main', url: 'https://github.com/sbgyhs/mywebapp'
             }
         }
         stage('Maven Build') {
             agent {
-                docker  image 'maven:3-openjdk-17' }
-            
+                docker  image 'maven:3-openjdk-17' 
+            }
             steps {
                 sh 'mvn package -DskipTests=true'
             }
         }
         stage('Maven Test') {
             agent {
-                docker  image 'maven:3-openjdk-17' }
-            
+                docker { image 'maven:3-openjdk-17' }
+            }
             steps {
                 sh 'mvn test'
             }
