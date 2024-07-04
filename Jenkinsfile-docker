@@ -40,8 +40,8 @@ pipeline {
             agent any
             steps {
                 withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
-                sh 'docker image tag mywebapp sbgyhs/mywebapp:latest'
-                sh 'docker image tag mywebapp sbgyhs/mywebapp:$BUILD_NUMBER'
+                sh 'docker image push sbgyhs/mywebapp:latest'
+                sh 'docker image push sbgyhs/mywebapp:$BUILD_NUMBER'
                 }
             }
         }
