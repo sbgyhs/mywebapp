@@ -4,7 +4,7 @@ pipeline {
         stage('Git Checkout') {
             agent any
             steps {
-                git branch: 'main', url: 'https://github.com/yhs0728/mywebapp'
+                git branch: 'main', url: 'https://github.com/sbgyhs/mywebapp'
             }
         }
         stage('Maven Build') {
