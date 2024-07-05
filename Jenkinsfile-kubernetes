@@ -56,7 +56,7 @@ spec:
         stage('Build & Tag & Push Docker Image') {
             steps {
                 container('kaniko') {
-                    sh 'executor --context=dir://$WORKSPACE --destination=https://hub.docker.com/repository/docker/yhs0728/mywebapp/:$BUILD_NUMBER --destination=https://hub.docker.com/repository/docker/yhs0728/mywebapp/:latest'
+                    sh 'executor --context=dir://$WORKSPACE --destination=yhs0728/mywebapp:$BUILD_NUMBER --destination=yhs0728/mywebapp:latest'
                 }
             }
         }
