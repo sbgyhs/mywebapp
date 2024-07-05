@@ -18,9 +18,9 @@ spec:
     - sleep
     args:
     - infinity
-  volumeMounts:
-  - name: registry-credentials
-    mountPath: /kaniko/.docker
+    volumeMounts:
+    - name: registry-credentials
+      mountPath: /kaniko/.docker
   volumes:
   - name: registry-credentials
     secret:
